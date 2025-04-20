@@ -14,6 +14,6 @@ export const connectDB = async () => {
     console.error(
       colors.bgRed.white(`❌ Error connecting to MongoDB: ${error.message}`)
     );
-    process.exit(1); // boa prática pra apps em prod
+    process.exit(1);
   }
 };

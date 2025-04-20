@@ -3,5 +3,5 @@ node_modules
 .env
 .husky
 testRoutes.http
-.env
+backend/.env
 commitlint.config.js

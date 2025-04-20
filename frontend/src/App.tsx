@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react";
+import { Navbar } from "./Components/Layout/NavBar";
+import { Hero } from "./Components/Sections/Hero";
+import { ChefSpecials } from "./Components/Sections/ChefSpecials";
+import { Menu } from "./Components/Sections/Menu";
+import { Reservation } from "./Components/Sections/Reservation";
+import { Contact } from "./Components/Sections/Contact";
+import { Footer } from "./Components/Layout/Footer";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Add custom styles to index.css
+import "./index.css";
+
+export const App = () => {
+  useEffect(() => {
+    // Update the document title
+    document.title = "Master's Food | Modern Culinary Experience";
+
+    // Add smooth scrolling behavior
+    document.documentElement.style.scrollBehavior = "smooth";
+
+    // Add global keyframes for animations
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes pulse {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+    <div className="min-h-screen bg-[#0a192f] text-white">
+      <Navbar />
+      <Hero />
+      <ChefSpecials />
+      <Menu />
+      <Reservation />
+      <Contact />
+      <Footer />
+    </div>
+  );
+};

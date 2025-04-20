@@ -1,0 +1,51 @@
+import { MenuItem } from "../src/types";
+
+export const menuItems: MenuItem[] = [
+  {
+    id: "1",
+    name: "Grilled Asparagus",
+    description: "Fresh asparagus grilled to perfection.",
+    price: 9.99,
+    image: "/images/asparagus.jpg",
+    category: "starters",
+    dietary: ["v", "gf", "df"],
+    featured: true,
+    ingredients: ["Asparagus", "Olive Oil", "Lemon", "Salt"],
+  },
+  {
+    id: "2",
+    name: "Vegan Burger",
+    description: "Delicious plant-based burger with all the fixings.",
+    price: 14.5,
+    image: "/images/vegan-burger.jpg",
+    category: "mains",
+    dietary: ["vg", "df"],
+    ingredients: [
+      "Vegan Patty",
+      "Lettuce",
+      "Tomato",
+      "Vegan Mayo",
+      "Whole Wheat Bun",
+    ],
+  },
+  {
+    id: "3",
+    name: "Chocolate Lava Cake",
+    description: "Rich and gooey chocolate cake with a molten center.",
+    price: 8.75,
+    image: "/images/lava-cake.jpg",
+    category: "desserts",
+    dietary: ["v"],
+    ingredients: ["Chocolate", "Butter", "Flour", "Eggs", "Sugar"],
+    featured: true,
+  },
+  {
+    id: "4",
+    name: "Sparkling Water",
+    description: "Chilled sparkling mineral water.",
+    price: 3.5,
+    image: "/images/sparkling-water.jpg",
+    category: "drinks",
+    dietary: ["vg", "gf", "df"],
+  },
+];

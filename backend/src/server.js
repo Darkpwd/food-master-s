@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import { router as routerAuth } from "./routes/authRoutes.js";
+import { router as userRoutes } from "./routes/userRoutes.js";
 import { router } from "./routes/testingRoutes.js";
 import { connectDB } from "./config/db.js";
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use("/api/v1/test", router); // path from my address web
 app.use("/api/v1/auth", routerAuth); // route auth
+app.use("/api/v1/user", userRoutes); // user route
 
 // Create my routes
 // get route

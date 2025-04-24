@@ -1,10 +1,10 @@
 import { ChefSpecial, RestaurantInfo } from "../src/types";
 
 export const restaurantInfo: RestaurantInfo = {
-  name: "NOVA",
+  name: "Master's Food",
   address: "123 Stellar Avenue, Metropolis, NY 10001",
   phone: "+1 (212) 555-8900",
-  email: "reservations@novarestaurant.com",
+  email: "reservations@mastersfoodrestaurant.com",
   hours: {
     Monday: "5:00 PM - 10:00 PM",
     Tuesday: "5:00 PM - 10:00 PM",
@@ -15,9 +15,9 @@ export const restaurantInfo: RestaurantInfo = {
     Sunday: "12:00 PM - 10:00 PM",
   },
   socialMedia: {
-    instagram: "https://instagram.com/novarestaurant",
-    facebook: "https://facebook.com/novarestaurant",
-    twitter: "https://twitter.com/novarestaurant",
+    instagram: "https://instagram.com/masters_foodrestaurant",
+    facebook: "https://facebook.com/masters_foodrestaurant",
+    twitter: "https://twitter.com/masters_foodrestaurant",
   },
 };
 

@@ -1,59 +1,56 @@
+// src/App.tsx
 import { useEffect } from "react";
-import { Navbar } from "./Components/Layout/NavBar";
-import { Hero } from "./Components/Sections/Hero";
-import { ChefSpecials } from "./Components/Sections/ChefSpecials";
-import { Menu } from "./Components/Sections/Menu";
-import { Reservation } from "./Components/Sections/Reservation";
-import { Contact } from "./Components/Sections/Contact";
-import { Footer } from "./Components/Layout/Footer";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { LoginPage } from "./pages/LoginPage";
+import { OrdersPage } from "./pages/OrdersPage";
+import { NavbarLogin } from "./Components/Layout/NavbarLogin"; // Auth system Navbar
+import { AuthGuard } from "./AuthGuard";
+import { initAuthStore } from "./store/authStore";
 
-// Add custom styles to index.css
-import "./index.css";
+// Import institucional layout
+import { HomeLayout } from "./pages/HomeIntuitional"; // Vai conter Hero, Menu, etc.
 
-export const App = () => {
-  useEffect(() => {
-    // Update the document title
-    document.title = "Master's Food | Modern Culinary Experience";
-
-    // Add smooth scrolling behavior
-    document.documentElement.style.scrollBehavior = "smooth";
-
-    // Add global keyframes for animations
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
-        100% { transform: translateY(0px); }
-      }
-
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-
-      @keyframes pulse {
-        0% { opacity: 0.6; }
-        50% { opacity: 1; }
-        100% { opacity: 0.6; }
-      }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-
+export function App() {
   return (
-    <div className="min-h-screen bg-[#0a192f] text-white">
-      <Navbar />
-      <Hero />
-      <ChefSpecials />
-      <Menu />
-      <Reservation />
-      <Contact />
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen flex flex-col bg-[#F8F4E3] dark:bg-[#1A1814] font-sans text-gray-800 dark:text-gray-100 antialiased scroll-smooth transition-colors duration-200">
+        <Routes>
+          <Route path="/" element={<HomeLayout />} />
+
+          {/* 🔐 Login */}
+          <Route
+            path="/login"
+            element={
+              <AuthGuard requireAuth={false}>
+                <LoginPage />
+              </AuthGuard>
+            }
+          />
+
+          {/* 📦 Dashboard */}
+          <Route
+            path="/orders"
+            element={
+              <AuthGuard>
+                <div className="flex flex-col min-h-screen">
+                  <NavbarLogin />
+                  <main className="flex-1">
+                    <OrdersPage />
+                  </main>
+                </div>
+              </AuthGuard>
+            }
+          />
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+    </Router>
   );
-};
+}

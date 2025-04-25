@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Food App API
+  description: API for managing food-related operations
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/api
+    description: Local server
+
+paths:
+  /foods:
+    get:
+      summary: Get all food items
+      tags:
+        - Foods
+      responses:
+        "200":
+          description: A list of food items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Food"
+
+    post:
+      summary: Create a new food item
+      tags:
+        - Foods
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Food"
+      responses:
+        "201":
+          description: Food created successfully
+
+  /foods/{id}:
+    get:
+      summary: Get a single food item by ID
+      tags:
+        - Foods
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A single food item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Food"
+        "404":
+          description: Food not found
+
+components:
+  schemas:
+    Food:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "64a1f7c8ef3e2d0012345678"
+        name:
+          type: string
+          example: "Burger"
+        price:
+          type: number
+          format: float
+          example: 5.99
+        category:
+          type: string
+          example: "Fast Food"
+        description:
+          type: string
+          example: "A delicious beef burger with cheese and lettuce."

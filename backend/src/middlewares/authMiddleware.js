@@ -10,7 +10,7 @@ export const authMiddleware = async (req, res, next) => {
           message: "Un-Authorize User",
         });
       } else {
-        // garante que req.body existe
+        // check body exist
         req.body = req.body || {};
         req.body.id = decode.id;
         next();

@@ -5,3 +5,4 @@ node_modules
 testRoutes.http
 backend/.env
 commitlint.config.js
+.vscode

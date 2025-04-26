@@ -40,13 +40,13 @@ components:
       properties:
         userName:
           type: string
-          example: "Jennifer Lynston"
+          example: "Jennifer Huston"
         email:
           type: string
           example: "jennylyn@gmail.com"
         password:
           type: string
-          example: "jejen22"
+          example: "jennyHuston22"
         phone:
           type: string
           example: "991-408-0762"

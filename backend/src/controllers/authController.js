@@ -4,9 +4,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 export const registerController = async (req, res) => {
   try {
-    const { userName, email, password, phone, address } = req.body;
+    const { userName, email, password, phone, address, answer } = req.body;
     // validate datas of my body request
-    if (!userName || !email || !password || !phone || !address) {
+    if ((!userName || !email || !password || !phone || !address, !answer)) {
       return res.status(500).send({
         success: false,
         message: "Please Provide All Fields",
@@ -20,6 +20,8 @@ export const registerController = async (req, res) => {
         message: "Email Already Registered Please Login.",
       });
     }
+
+    // encrypt password
     let salt = bcrypt.genSaltSync(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     // create new user
@@ -29,6 +31,7 @@ export const registerController = async (req, res) => {
       password: hashedPassword,
       phone,
       address,
+      answer,
     });
     res.status(201).send({
       success: true,

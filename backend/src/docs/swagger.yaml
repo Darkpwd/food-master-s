@@ -1,82 +1,60 @@
 openapi: 3.0.3
 info:
-  title: Food App API
+  title: Food API
   description: API for managing food-related operations
+  contact:
+    name: Gustavo
+    email: gustavosantana559@gmail.com
   version: 1.0.0
 
 servers:
-  - url: http://localhost:3000/api
-    description: Local server
+  - url: http://localhost:8080/api/v1
+    description: Development server
 
 paths:
-  /foods:
-    get:
-      summary: Get all food items
-      tags:
-        - Foods
-      responses:
-        "200":
-          description: A list of food items
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Food"
-
+  /auth/register:
     post:
-      summary: Create a new food item
+      summary: Create a new user
+      description: Create a new user in the system
+      operationId: createUser
       tags:
-        - Foods
+        - Users
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Food"
+              $ref: "#/components/schemas/User"
       responses:
         "201":
-          description: Food created successfully
-
-  /foods/{id}:
-    get:
-      summary: Get a single food item by ID
-      tags:
-        - Foods
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: A single food item
+          description: User created successfully!
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Food"
-        "404":
-          description: Food not found
+                $ref: "#/components/schemas/User"
 
 components:
   schemas:
-    Food:
+    User:
       type: object
       properties:
-        id:
+        userName:
           type: string
-          example: "64a1f7c8ef3e2d0012345678"
-        name:
+          example: "Jennifer Lynston"
+        email:
           type: string
-          example: "Burger"
-        price:
-          type: number
-          format: float
-          example: 5.99
-        category:
+          example: "jennylyn@gmail.com"
+        password:
           type: string
-          example: "Fast Food"
-        description:
+          example: "jejen22"
+        phone:
           type: string
-          example: "A delicious beef burger with cheese and lettuce."
+          example: "991-408-0762"
+        address:
+          type: array
+          items:
+            type: string
+          example: ["Lorena Brook", "Chicago", "USA"]
+        answer:
+          type: string
+          example: "cat"
